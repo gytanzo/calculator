@@ -15,13 +15,7 @@ int main(int argc, char *argv[]) {
 
 bool isinteger(char *str){
     if (str[0] == '-')
-        if (strlen(str) < 12)
-            return true;
-        else
-            return false;
+        
     else
-        if (strlen(str) < 11)
-            return true;
-        else
-            return false;
+        
 }
