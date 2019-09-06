@@ -10,12 +10,16 @@ int parseint(char *str);
 bool testSign(char *str);
 
 int main(int argc, char *argv[]) {
-    printf("%s \n", argv[1]);
+    printf("%s \n", argv[2]);
     if (argc == 2){
         if (isinteger(argv[1])){
             int parsed = parseint(argv[1]);
             printf("%d \n", parsed);
             return 0;
+        }
+        else {
+            printf("Error: Invalid input \n");
+            return 1;
         }
     }
     else if (argc == 4){
@@ -25,19 +29,34 @@ int main(int argc, char *argv[]) {
                 return 1;
             }
         }
-        else if (strchr(argv[1], '+')){
-            printf("Error: Mathematic operator in invalid location \n");
-            return 1;
+        else if (isinteger(argv[1]) && isinteger(argv[3])){
+            if (strchr(argv[2], '+')){
+                return 0;
+            }
+            else if (strchr(argv[2], '-')){
+                return 0;
+            }
+            else if (strchr(argv[2], '/')){
+                return 0;
+            }
+            else if (strchr(argv[2], 'x')){
+                return 0;
+            }
+            else {
+                printf("Error: Invalid operator \n");
+                return 1;
+            }
         }
         else {
-            return 0;
+            printf("Error: Invalid input \n");
+            return 1;
         }
     }
-    else if (argc <= 1){
+    else if (argc <= 1 || argc == 3){
         printf("Error: Too few arguments \n");
         return 1;
     }
-    else {
+    else if (argc > 4){
         printf("Error: Too many arguments \n");
         return 1;
     }
